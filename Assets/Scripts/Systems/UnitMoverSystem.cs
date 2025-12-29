@@ -1,15 +1,18 @@
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
-using Unity.Transforms;
 using Unity.Physics;
+using Unity.Transforms;
 
-partial struct UnitMoverSystem : ISystem
-{
-    
+partial struct UnitMoverSystem : ISystem {
+
     [BurstCompile]
-    public void OnUpdate(ref SystemState state)
-    {
+    public void OnUpdate(ref SystemState state) {
+        UnitMoverJob unitMoverJob = new UnitMoverJob {
+            deltaTime = SystemAPI.Time.DeltaTime
+        };
+        unitMoverJob.ScheduleParallel();
+        /*
         foreach ((
             RefRW<LocalTransform> localTransform,
             RefRO<UnitMover> unitMover,
@@ -18,8 +21,7 @@ partial struct UnitMoverSystem : ISystem
             RefRW<LocalTransform>,
             RefRO<UnitMover>,
             RefRW<PhysicsVelocity>
-            >())
-        {
+            >()) {
 
             float3 moveDirection = unitMover.ValueRO.targetPosition - localTransform.ValueRO.Position;
             moveDirection = math.normalize(moveDirection);
@@ -31,7 +33,28 @@ partial struct UnitMoverSystem : ISystem
             physicsVelocity.ValueRW.Linear = moveDirection * unitMover.ValueRO.moveSpeed;
             physicsVelocity.ValueRW.Angular = float3.zero;
         }
+        */
     }
 
-   
+    
+}
+
+[BurstCompile]
+public partial struct UnitMoverJob : IJobEntity {
+    public float deltaTime;
+    private void Execute(
+        ref LocalTransform localTransform,
+        in UnitMover unitMover,
+        ref PhysicsVelocity physicsVelocity
+        ) {
+        float3 moveDirection = unitMover.targetPosition - localTransform.Position;
+        moveDirection = math.normalize(moveDirection);
+
+        localTransform.Rotation = math.slerp(localTransform.Rotation,
+            quaternion.LookRotationSafe(moveDirection, math.up()),
+            deltaTime * unitMover.rotationSpeed);
+
+        physicsVelocity.Linear = moveDirection * unitMover.moveSpeed;
+        physicsVelocity.Angular = float3.zero;
+    }
 }
