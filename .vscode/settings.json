@@ -67,5 +67,8 @@
         "*.sln": "*.csproj",
         "*.slnx": "*.csproj"
     },
-    "dotnet.defaultSolution": "DOTS Project.slnx"
+    "dotnet.defaultSolution": "DOTS Project.slnx",
+    "cSpell.words": [
+        "Mathf"
+    ]
 }

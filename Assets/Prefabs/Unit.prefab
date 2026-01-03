@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 6482663393873052601}
   - component: {fileID: 5022275415079783755}
   - component: {fileID: -4763154231939168895}
+  - component: {fileID: 7853053488178500470}
   - component: {fileID: 7058431810725619545}
   - component: {fileID: 9032984691889907970}
   m_Layer: 0
@@ -155,6 +156,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SelectedAuthoring
   visualGameObject: {fileID: 5882714085729246927}
   showScale: 2
+--- !u!114 &7853053488178500470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5666582901887796440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c446515a838130a48b3340afa94a847f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UnitAuthoring
 --- !u!136 &7058431810725619545
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class UnitSelectionManagerUI : MonoBehaviour {
     [SerializeField] private RectTransform selectionAreaRectTransform;
+    [SerializeField] private Canvas canvas;
 
     private void Start() {
         UnitSelectionManager.Instance.OnSelectionAreaStart += UnitSelectionManager_OnSelectionAreaStart;
@@ -24,7 +25,8 @@ public class UnitSelectionManagerUI : MonoBehaviour {
 
     private void UpdateVisual() {
         Rect selectionRect = UnitSelectionManager.Instance.GetSelectionAreaRect();
-        selectionAreaRectTransform.anchoredPosition = selectionRect.position;
-        selectionAreaRectTransform.sizeDelta = selectionRect.size;
+        float canvasScale = canvas.transform.localScale.x;
+        selectionAreaRectTransform.anchoredPosition = selectionRect.position / canvasScale;
+        selectionAreaRectTransform.sizeDelta = selectionRect.size / canvasScale;
     }
 }

@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b5b67c6c13802f418ec4bd3e158ddde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UnitSelectionManagerUI
+  selectionAreaRectTransform: {fileID: 563534357}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
