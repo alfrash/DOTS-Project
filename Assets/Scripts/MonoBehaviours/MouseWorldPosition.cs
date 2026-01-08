@@ -13,12 +13,7 @@ public class MouseWorldPosition : MonoBehaviour
         }
         Instance = this;
     }
-    private void Update()
-    {
-        // Vector3 worldPosition = GetPosition();
-        // You can use worldPosition as needed, e.g., for debugging
-        // Debug.Log("Mouse World Position: " + worldPosition);
-    }
+    
     public Vector3 GetPosition()
     {
         if (Mouse.current == null) return Vector3.zero;
